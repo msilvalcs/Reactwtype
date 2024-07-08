@@ -1,12 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { InputLogin } from "./components/InputLogin";
+
+
 
 export const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
   const inputPasswordRef = useRef<HTMLInputElement>(null);
-  const buttonEntrar = useRef<HTMLButtonElement>(null);
+  const inputEnterRef = useRef<HTMLButtonElement>(null);
 
   /* FUNÇÃO PARA CONTROLAR QUANDO BLOCO DE CÓDIGO SERÁ EXECUTADO
     
@@ -45,31 +48,36 @@ export const Login = () => {
         <Link to={"/dasboard"}>Tela inicial</Link>
         <p>Quantidade de caracteres no email: {emailLength} </p>
 
-        <label>
-          <span>E-mail:</span>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) =>
-              e.key === "Enter" ? inputPasswordRef.current?.focus() : undefined
-            }
-          />
-        </label>
+        <InputLogin
+          label="Email"
+          value={email}
+          onChange={(newValue) => setEmail(newValue)}
+          onPressEnter={() => inputPasswordRef.current?.focus()}
+        />
 
-        <label>
+        <InputLogin
+          label="Senha"
+          type="password"
+          value={password}
+          ref={inputPasswordRef}
+          onChange={(newValue) => setPassword(newValue)}
+          onPressEnter= {() => inputEnterRef.current?.focus()}
+        />
+
+        {/* <label>
           <span>Senha:</span>
           <input
             type="password"
             value={password}
-            ref={inputPasswordRef}
+            ref={inputEnterRef}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) =>
               e.key === "Enter" ? buttonEntrar.current?.focus() : undefined
             }
           />
-        </label>
+        </label> */}
 
-        <button type="button" onClick={handleEntrar} ref={buttonEntrar}>
+        <button type="button" onClick={handleEntrar} ref={inputEnterRef}>
           Entrar
         </button>
       </form>
