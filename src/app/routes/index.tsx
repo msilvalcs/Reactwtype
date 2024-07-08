@@ -1,6 +1,5 @@
 import { Routes as Switch, Route, Navigate, BrowserRouter } from "react-router-dom";
-import { Dashboard} from "../pages";
-import { Login } from "../pages/login/Login";
+import { Dashboard, Login} from "../pages";
 
 export const Routes = () => {
     return (
