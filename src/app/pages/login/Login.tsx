@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { InputLogin } from "./components/InputLogin";
-
-
+import { ButtonLogin } from "./components/ButtonLogin";
 
 export const Login = () => {
   const [password, setPassword] = useState("");
@@ -57,29 +56,24 @@ export const Login = () => {
 
         <InputLogin
           label="Senha"
-          type="password"
           value={password}
-          ref={inputPasswordRef}
+          type="password"
           onChange={(newValue) => setPassword(newValue)}
-          onPressEnter= {() => inputEnterRef.current?.focus()}
+          onPressEnter={() => inputEnterRef.current?.focus()}
+          ref={inputPasswordRef}
         />
 
-        {/* <label>
-          <span>Senha:</span>
-          <input
-            type="password"
-            value={password}
-            ref={inputEnterRef}
-            onChange={(e) => setPassword(e.target.value)}
-            onKeyDown={(e) =>
-              e.key === "Enter" ? buttonEntrar.current?.focus() : undefined
-            }
-          />
-        </label> */}
-
-        <button type="button" onClick={handleEntrar} ref={inputEnterRef}>
-          Entrar
-        </button>
+        <ButtonLogin
+          ref={inputEnterRef}
+          type="button"
+          onClick={handleEntrar}
+          children={<>Entrar</>}
+        />
+        <ButtonLogin
+          type="button"
+          onClick={handleEntrar}
+          children={<>Cadastrar</>}
+        />
       </form>
     </div>
   );
