@@ -1,4 +1,6 @@
+
 import React from "react";
+import { useUsuarioLogado } from "../../../shared/hooks";
 
 interface IButtonLoginProps {
   type?: "button" | "submit" | "reset";
@@ -9,6 +11,9 @@ interface IButtonLoginProps {
 }
 
 export const ButtonLogin = React.forwardRef<HTMLButtonElement, IButtonLoginProps>((props, ref) => {
+  
+ /*  const {nomeDoUsuario} = useUsuarioLogado(); */
+
   return (
     <button type={props.type} 
     ref={ref}
@@ -17,7 +22,7 @@ export const ButtonLogin = React.forwardRef<HTMLButtonElement, IButtonLoginProps
           ? props.onPressEnter && props.onPressEnter()
           : undefined
       }>
-      {props.children}
+      {/* {nomeDoUsuario}  */}{props.children}
     </button>
   );
 });

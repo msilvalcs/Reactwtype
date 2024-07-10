@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+
 import { InputLogin } from "./components/InputLogin";
 import { ButtonLogin } from "./components/ButtonLogin";
+import { useUsuarioLogado } from "../../shared/hooks";
 
 export const Login = () => {
   const [password, setPassword] = useState("");
@@ -9,6 +11,8 @@ export const Login = () => {
 
   const inputPasswordRef = useRef<HTMLInputElement>(null);
   const inputEnterRef = useRef<HTMLButtonElement>(null);
+
+  const {nomeDoUsuario} = useUsuarioLogado();
 
   /* FUNÇÃO PARA CONTROLAR QUANDO BLOCO DE CÓDIGO SERÁ EXECUTADO
     
@@ -46,6 +50,8 @@ export const Login = () => {
       <form>
         <Link to={"/dasboard"}>Tela inicial</Link>
         <p>Quantidade de caracteres no email: {emailLength} </p>
+        
+        <p>{nomeDoUsuario}</p>
 
         <InputLogin
           label="Email"

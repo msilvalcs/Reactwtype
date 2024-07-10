@@ -1,17 +1,24 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
+import { useUsuarioLogado } from "../../shared/hooks";
+
 export const Dashboard = () => {
-  const counterRef = useRef({ counter: 0 });
+  const counterRef = useRef(0);
+
+  const {nomeDoUsuario} = useUsuarioLogado();
+
   return (
     <div>
       <Link to={"/login"}>Login</Link>
       <p> Dashboard </p>
 
-      <p>Contador: {counterRef.current.counter} </p>
+      <p>{nomeDoUsuario}</p>
 
-      <button onClick={() => counterRef.current.counter++}>Somar</button>
-      <button onClick={() => console.log(counterRef.current.counter)}>
+      <p>Contador: {counterRef.current} </p>
+
+      <button onClick={() => counterRef.current++}>Somar</button>
+      <button onClick={() => console.log(counterRef.current)}>
         Log
       </button>
     </div>
